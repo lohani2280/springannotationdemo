@@ -4,22 +4,20 @@ import com.stackroute.domain.Actor;
 import com.stackroute.domain.Movie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class AppConfig {
-    @Bean
+    @Bean(name = {"movieA", "movieB"})
+    @Scope(value = "prototype")
     public Movie getMovie(){
-        Movie movie = new Movie();
-        movie.setActor1(getActor());
+        Movie movie = new Movie(getActor());
         return movie;
     }
 
     @Bean
     public Actor getActor(){
-        Actor actor = new Actor();
-        actor.setAge(22);
-        actor.setGender("Male");
-        actor.setName("lohani2280");
+        Actor actor = new Actor("lohani2280", "Male", 63);
         return actor;
     }
 }
