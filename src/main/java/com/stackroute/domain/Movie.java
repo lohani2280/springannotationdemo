@@ -2,16 +2,15 @@ package com.stackroute.domain;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component
-public class Movie implements ApplicationContextAware, BeanFactoryAware, BeanNameAware {
+public class Movie {
 //    @Autowired
     private Actor actor1;
 
@@ -24,22 +23,18 @@ public class Movie implements ApplicationContextAware, BeanFactoryAware, BeanNam
     public void setActor1(Actor actor2) {
         this.actor1 = actor2;
     }
+
     public void printActor() {
         actor1.printActorInfo();
     }
 
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("Bean factory: " + beanFactory);
+    @PostConstruct
+    public void init(){
+        System.out.println("Custom init-method called");
     }
 
-    @Override
-    public void setBeanName(String s) {
-        System.out.println("Bean Name: " + s);
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("Application Context: " + applicationContext);
+    @PreDestroy
+    public void destroy(){
+        System.out.println("Custom destroy-method called");
     }
 }

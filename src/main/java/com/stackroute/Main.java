@@ -10,5 +10,6 @@ public class Main {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         Movie y_movie = ctx.getBean(Movie.class);
         y_movie.printActor();
+        ((AnnotationConfigApplicationContext)ctx).close();
     }
 }
