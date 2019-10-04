@@ -5,6 +5,7 @@ public class Actor {
     private String gender;
     private int age;
 
+    public Actor(){}
     public Actor(String name, String gender, int age) {
         this.name = name;
         this.gender = gender;
@@ -26,5 +27,4 @@ public class Actor {
     public void printActorInfo() {
         System.out.println("Name of the actor is: " + name + " & Gender is: " + gender + " & Age is: " + age);
     }
-
 }
